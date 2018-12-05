@@ -3,29 +3,32 @@ package domain;
 import java.util.Random;
 
 public class Car {
+    private static final String DASH = "-";
+
     private int position;
     private String name;
 
     public Car(int trials) {
-        this.position = getFinalPosition(trials);
+        goToFinalPosition(trials);
     }
 
-    private int getFinalPosition(int trials) {
-        int position = 0;
+    private void goToFinalPosition(int trials) {
         for (int i = 0; i < trials; i++) {
-            if(new Random().nextInt(10) > 4) {
-                position++;
-            }
+            go();
         }
+    }
 
-        return position;
+    private void go() {
+        if(new Random().nextInt(10) > 4) {
+            position++;
+        }
     }
 
     public String getPositionMarks() {
-        StringBuilder bars = new StringBuilder();
+        StringBuilder marks = new StringBuilder();
         for (int i = 0; i < position; i++) {
-            bars.append('-');
+            marks.append(DASH);
         }
-        return bars.toString();
+        return marks.toString();
     }
 }
